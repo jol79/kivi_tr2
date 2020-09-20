@@ -1,10 +1,12 @@
 <MainPage>:
-    # Label:
-    #    font_size: 11
-    #    center_x: root.width * 1/4
-    #    top: root.top - 17
-    #    text: "We need your data for automatization purposes"
+    # creating global variables:
+    email: email
+    password: password
+    keyword: keyword
+
     TextInput:
+        id: email
+
         font_size: 18
         center_x: root.width * 2/4
         top: root.top - 50
@@ -12,6 +14,8 @@
         height: 35
         text : "Email"
     TextInput:
+        id: password
+
         font_size: 18
         center_x: root.width * 2/4
         top: root.top - 90
@@ -19,6 +23,9 @@
         height: 35
         text : "Password"
     TextInput:
+        id: keyword
+
+
         font_size: 18
         center_x: root.width * 2/4
         top: root.top - 130
@@ -26,6 +33,9 @@
         height: 35
         text : "Keyword"
     Button:
+        # root allows us to reference all the methods inside the class:
+        on_press: root.btn()
+
         center_x: root.width * 2/4
         top: root.top - 170
         height: 35
