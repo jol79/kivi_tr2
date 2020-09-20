@@ -1,0 +1,8 @@
+- Aim:
+	Get the data from the text boxes and connect this all to button-related function. In this function we GET data from text boxes, data_checker, and file-get elements and put this data in different variables, later we simply use this variables as input for already created algorithm in "csv_analizer" repository 
+- Notes:
+	1)  
+- Bug: 
+	1) 
+- Bug fix:
+	1)  
