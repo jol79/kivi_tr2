@@ -1,0 +1,11 @@
+###
+# Aim: note all realized functionalities, and that I need to realize in future commits  
+###
+
+Functionality to realize:
+	1) get file path from file chooser
+	... ) use textures from figma patterns
+	
+Realized: 
+	1) Hint text in text-input widgets
+	2) File chooser

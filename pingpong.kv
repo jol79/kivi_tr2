@@ -1,9 +1,24 @@
 <MainPage>:
+
+    txtInHint_Email: "Email"
+    txtInHint_Password: "Password"
+    txtInHint_Keyword: "Keyword"
+
+    # main page color, rectangle for full size of the window:
+    canvas.before:
+        Color:
+            rgba: 174, 174, 192, 0.4
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
     # creating global variables:
     email: email
     password: password
     keyword: keyword
+    filechooser: filechooser
 
+    # email text-input form:
     TextInput:
         id: email
 
@@ -12,7 +27,10 @@
         top: root.top - 50
         multiline: False
         height: 35
-        text : "Email"
+        hint_text: root.txtInHint_Email
+        hint_text_color: 0, 0, 0, 1
+
+    # password text-input form:
     TextInput:
         id: password
 
@@ -21,17 +39,22 @@
         top: root.top - 90
         multiline: False
         height: 35
-        text : "Password"
+        hint_text: root.txtInHint_Password
+        hint_text_color: 0, 0, 0, 1
+
+    # keyword text-input password form:
     TextInput:
         id: keyword
-
 
         font_size: 18
         center_x: root.width * 2/4
         top: root.top - 130
         multiline: False
         height: 35
-        text : "Keyword"
+        hint_text: root.txtInHint_Keyword
+        hint_text_color: 0, 0, 0, 1
+
+    # search button:
     Button:
         # root allows us to reference all the methods inside the class:
         on_press: root.btn()
@@ -40,10 +63,16 @@
         top: root.top - 170
         height: 35
 
+    # filechooser widget
+    FileChooserListView:
+        id: filechooser
 
-        ###
-        # - to realize:
-        #       1) hint text in the text boxes
-        #       2) use textures from figma patterns
-        # - Notes: on_focus -> insert text ...
-        #
+        center_x: root.width * 2/4
+        top: root.top - 250
+        size: 400, 400
+
+
+<SearchButton>:
+    source: "pressed.png"
+    size: 100, 100
+

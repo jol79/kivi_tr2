@@ -1,0 +1,4 @@
+	Aim: I need to integrate design patterns definetely the same as I created in Figma, so I need to implement every part starts from shadows till the border-radius of each element
+ 
+
+	Notes: A good practive will be the same dev strategy as I have described in the "Aim" part of this txt, because if I will start importing elements as SVG or PNG from figma and simply paste (e.g. as buttonbehavior, Image) it will be mess
