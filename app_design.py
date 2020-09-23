@@ -1,6 +1,7 @@
 import kivy as kivy
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.label import Label
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.popup import Popup
@@ -32,10 +33,23 @@ class MainPage(Widget):
     password = ObjectProperty(None)
     keyword = ObjectProperty(None)
 
+    # method to open popup window:
+    def show_popup(self):
+        show = P()
+
+        popupWindow = Popup(title="Popup window",
+                            content=show,
+                            size_hint=(None, None),
+                            size=(400, 400))
+        popupWindow.open()
+
+    # button to get data provided in TextInput widgets:
     def btn(self):
         print("email: ", self.email.text,
               ", password: ", self.password.text,
               ", keyword: ", self.keyword.text)
+
+        self.show_popup()
 
     # # method to get path from filechooser:
     # def load(self, path, filename):
@@ -52,15 +66,33 @@ class SearchButton(Widget):
 
         # popup window with filechooser:
         popup = Popup(title="Choose file",
+                      ###
+                      # as content that will be displayed
+                      # in the popup window we will use
+                      # filechooser object that we
+                      # created in the kv file
+                      ###
                       content=self.filechooser,
                       auto_dismiss=False,
                       size=(400, 200))
 
 
-'''
-to change name of the app you need to refactor
-name of the this main class:
-'''
+# class to hold the content of our popup:
+class P(FloatLayout):
+    pass
+
+
+# # button widget to open popup window with datetime chooser:
+# class TimeButton(Widget):
+#
+#     datetime_chooser = ObjectProperty(None)
+#
+#         # popup window with datetime widget
+#         popup = Popup(title="test")
+
+
+# to change name of the app you need to refactor
+# name of the this main class:
 class PingPong(App):
 
     def build(self):
