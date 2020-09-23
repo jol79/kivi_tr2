@@ -16,7 +16,6 @@
     email: email
     password: password
     keyword: keyword
-    filechooser: filechooser
 
     # email text-input form:
     TextInput:
@@ -63,29 +62,21 @@
         top: root.top - 170
         height: 35
 
-    # filechooser widget
+    # choose file button:
+    Button:
+        text: "Choose file"
+        on_release: root.btn()
+        height: 35
+        center_x: root.width * 2/4
+        top: root.top - 210
+
+<P>:
+    filechooser: filechooser
+
+    # filechooser widget in popup window:
     FileChooserListView:
         id: filechooser
 
-        center_x: root.width * 2/4
-        top: root.top - 250
-        size: 400, 400
-
-    Button:
-        text: "press me"
-        on_release: root.btn()
-
-
-<SearchButton>:
-    source: "pressed.png"
-    size: 100, 100
-
-<P>:
-    Label:
-        text: "You pressed the button"
-        size_hint: 0.6, 0.2
-        pos_hint: {"x":0.2, "top":1}
-    Button:
-        text: "You pressed the button"
-        size_hint: 0.8, 0.2
-        pos_hint: {"x":0.1, "top":1}
+        center_x: root.width - 115
+        top: root.top - (-20)
+        size: 250, 250

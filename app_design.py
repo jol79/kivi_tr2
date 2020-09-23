@@ -10,6 +10,7 @@ from kivy.uix.widget import Widget
 from kivy.uix.button import Button
 from kivy.properties import ObjectProperty
 from kivy.uix.filechooser import FileChooserListView
+from kivy.config import Config
 
 '''
 Texture atlas in official kivy documentation, I can
@@ -27,6 +28,8 @@ from kivy.uix.button import ButtonBehavior
 
 # initializing gridlayout widget with label:
 class MainPage(Widget):
+    # fixed size for window:
+    Config.set('graphics', 'resizable', False)
 
     # initializing variables to get from kv file:
     email = ObjectProperty(None)
@@ -37,7 +40,7 @@ class MainPage(Widget):
     def show_popup(self):
         show = P()
 
-        popupWindow = Popup(title="Popup window",
+        popupWindow = Popup(title="Choose file",
                             content=show,
                             size_hint=(None, None),
                             size=(400, 400))
@@ -51,30 +54,11 @@ class MainPage(Widget):
 
         self.show_popup()
 
+
     # # method to get path from filechooser:
     # def load(self, path, filename):
     #     with open(os.path.join(path, filename), 'w') as stream:
     #         stream.write(self.text)
-
-
-# button widget to open popup window with filechooser:
-class SearchButton(Widget):
-
-    filechooser = ObjectProperty(None)
-
-    def btn_filechooser(self):
-
-        # popup window with filechooser:
-        popup = Popup(title="Choose file",
-                      ###
-                      # as content that will be displayed
-                      # in the popup window we will use
-                      # filechooser object that we
-                      # created in the kv file
-                      ###
-                      content=self.filechooser,
-                      auto_dismiss=False,
-                      size=(400, 200))
 
 
 # class to hold the content of our popup:
