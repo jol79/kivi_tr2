@@ -56,7 +56,7 @@
     # search button:
     Button:
         # root allows us to reference all the methods inside the class:
-        on_press: root.btn()
+        on_press: root.btn__txt()
 
         center_x: root.width * 2/4
         top: root.top - 170
@@ -65,20 +65,21 @@
     # choose file button:
     Button:
         text: "Choose file"
-        on_release: root.btn()
+        on_release: root.btn__popup()
         height: 35
         center_x: root.width * 2/4
         top: root.top - 210
 
 <P>:
-    filechooser: filechooser
+
+    #filechooser: filechooser
 
     # filechooser widget in popup window:
-    FileChooserListView:
-        id: filechooser
+    #FileChooserListView:
+        #id: filechooser
 
-        center_x: root.width - 115
-        top: root.top - (-20)
-        size: 250, 250
+        #center_x: root.width - 115
+        #top: root.top - (-20)
+        #size: 250, 250
 
 

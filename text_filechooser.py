@@ -19,7 +19,7 @@ class TestApp(App):
         browser = FileBrowser(select_string='Select',
                               favorites=[(user_path, 'Documents')])
 
-        # binding buttons depends on functionalities:
+        # binding buttons events:
         browser.bind(
                     on_success=self._fbrowser_success,
                     on_canceled=self._fbrowser_canceled)
