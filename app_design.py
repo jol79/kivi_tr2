@@ -9,8 +9,13 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.widget import Widget
 from kivy.uix.button import Button
 from kivy.properties import ObjectProperty
-from kivy.uix.filechooser import FileChooserListView
 from kivy.config import Config
+
+'''
+ Libraries needed for file chooser:
+'''
+from kivy.uix.filechooser import FileChooserListView
+from os.path import sep, expanduser, isdir, dirname
 
 '''
 Texture atlas in official kivy documentation, I can
