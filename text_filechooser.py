@@ -10,12 +10,16 @@ class TestApp(App):
 
     def build(self):
 
+        # way for windows users:
         if platform == 'win':
             user_path = dirname(expanduser('~')) + sep + 'Documents'
+        # for other OS:
         else:
             user_path = expanduser('~') + sep + 'Documents'
         browser = FileBrowser(select_string='Select',
                               favorites=[(user_path, 'Documents')])
+
+        # binding buttons depends on functionalities:
         browser.bind(
                     on_success=self._fbrowser_success,
                     on_canceled=self._fbrowser_canceled)
