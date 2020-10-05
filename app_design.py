@@ -37,6 +37,11 @@ from kivy.uix.button import ButtonBehavior
 
 # initializing gridlayout widget with label:
 class MainPage(Widget):
+    # initializing upload_filebrowser class:
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.show = Upload_FileBrowser()
+
     # fixed size for window:
     Config.set('graphics', 'resizable', False)
 
@@ -44,16 +49,6 @@ class MainPage(Widget):
     email = ObjectProperty(None)
     password = ObjectProperty(None)
     keyword = ObjectProperty(None)
-
-    # method to open popup window:
-    def show_popup(self):
-        show = P()
-
-        popupWindow = Popup(title="Choose file",
-                            content=show,
-                            size_hint=(None, None),
-                            size=(400, 400))
-        popupWindow.open()
 
     # button to get data provided in TextInput widgets:
     def btn__txt(self):
@@ -63,7 +58,7 @@ class MainPage(Widget):
 
     # button to work with popup window:
     def btn__popup(self):
-        self.show_popup()
+        self.show.start()
 
     # # method to get path from filechooser:
     # def load(self, path, filename):
@@ -71,40 +66,43 @@ class MainPage(Widget):
     #         stream.write(self.text)
 
 
-# class to hold the content of our popup:
-class P(FloatLayout):
-    global selection
-    global selection_result
+# class to hold the content of popup:
+class Upload_FileBrowser:
 
-    def set_filebrowser(self):
+    def __init__(self, heading_text="Choose files"):
 
         if platform == 'win':
             user_path = dirname(expanduser('~')) + sep + 'Documents'
         else:
             user_path = expanduser('~') + sep + 'Documents'
 
-        browser = FileBrowser(select_string='Select',
+        # initializing filebrowser object:
+        browser = FileBrowser(select_string='Select', cancel_string='Cancel',
                               favorites=[(user_path, 'Documents')])
 
-        # binding buttons events:
+        # binding events:
         browser.bind(
             on_success=self._fbrowser_success,
-            on_canceled=self._fbrowser_canceled)
+            on_cancel=self._fbrowser_cancel
+        )
 
-    def _fbrowser_canceled(self, instance):
-        print('cancelled, Close self.')
+        # popup to hold FileBrowser:
+        self.popup = Popup(
+            title=heading_text,
+            content=browser,
+            size_hint=(None, None),
+            size=(600, 600)
+        )
 
-    ###
-    # if user successfully selected needed file
-    # path for that file will be saved in selection
-    # read-only ListProperty that will contain the list
-    # of files that are currently selected
-    ###
     def _fbrowser_success(self, instance):
-        selection_result = instance.selection
+        result_success = instance.selection
+        return result_success
 
-        return selection_result
+    def _fbrowser_cancel(self, instance):
+        print("Nothing choosed")
 
+    def start(self):
+        self.popup.open()
 
 # # button widget to open popup window with datetime chooser:
 # class TimeButton(Widget):
@@ -118,7 +116,6 @@ class P(FloatLayout):
 # to change name of the app you need to refactor
 # name of the this main class:
 class PingPong(App):
-
     def build(self):
         return MainPage()
 
