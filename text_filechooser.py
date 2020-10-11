@@ -3,7 +3,27 @@ from platform import platform
 from kivy.app import App
 from os.path import sep, expanduser, isdir, dirname
 
+from kivy.uix.popup import Popup
 from kivy_garden.filebrowser import FileBrowser
+
+
+class UploadBrowser:
+    def __init__(self):
+        browser = FileBrowser(select_string='Select', cancel_string='Cancel')
+
+        # binding events:
+        browser.bind(
+            on_success=self._fbrowser_success,
+            on_cancel=self._fbrowser_cancel
+        )
+
+        # popup to hold FileBrowser:
+        self.popup = Popup(
+            title="choose file",
+            content=browser,
+            size_hint=(None, None),
+            size=(600, 600),
+        )
 
 
 class TestApp(App):

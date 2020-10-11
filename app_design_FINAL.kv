@@ -1,0 +1,81 @@
+# data that will be loaded in popup(data container)
+<FileChoosePopup>:
+    title: "Choose needed .csv file"
+    size_hint: .8, .8
+
+    # if user miss popup window it will not be closed
+    auto_dismiss: False
+
+
+    BoxLayout:
+        orientation: "vertical"
+        FileChooser:
+            id: filechooser
+            FileChooserIconLayout
+
+        BoxLayout:
+            size_hint: (1, 0.1)
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            spacing: 20
+
+            # load btn:
+            Button:
+                text: "Load"
+                on_release: root.load(filechooser.selection)
+                id: load_btn
+
+                ###
+                # check when ever file was selected or
+                # not, if not -> button will be disabled,
+                # and user will not be able to press btn
+                # else -> user will be able to press the button
+                ###
+                disable: True if filechooser.selection==[] else False
+
+            # cancel btn:
+            Button:
+                text: "Cancel"
+
+                # close popup after {Cancel} button pressed:
+                on_release: root.dismiss()
+
+
+###
+# at this moment I have pattern to work in the future with
+# tabs, means that users will have structured process
+# to provide filtered data
+###
+<Tab>:
+    # in tabs part will be only this tab with created data
+    do_default_tab: False
+
+    TabbedPanelItem:
+        text: 'Data providing'
+        background_color: (1, .5, 0, 1)
+        background_normal: ''
+
+        StackLayout:
+            orientation: 'lr-tb'
+            size_hint_y: None
+            height: 30
+            spacing: 5
+            Label:
+                text: ''
+                size_hint_x: 1
+            Label:
+                text: ''
+                size_hint_x: 0.2
+            Button:
+                text: 'Choose File'
+                size_hint_x: 0.2
+                on_press: root.open_popup()
+            TextInput:
+                id: get_file
+                readonly: True
+                size_hint_x: 0.4
+            Label:
+                text: ''
+                size_hint_x: 0.2
+
+
+

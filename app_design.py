@@ -28,15 +28,9 @@ from kivy.uix.textinput import Texture
 from kivy.uix.image import Image
 
 
-'''
-for button img I can use ButtonBehavior class of Button
-parent class
-'''
-from kivy.uix.button import ButtonBehavior
-
-
 # initializing gridlayout widget with label:
 class MainPage(Widget):
+
     # initializing upload_filebrowser class:
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -60,30 +54,19 @@ class MainPage(Widget):
     def btn__popup(self):
         self.show.start()
 
-    # # method to get path from filechooser:
-    # def load(self, path, filename):
-    #     with open(os.path.join(path, filename), 'w') as stream:
-    #         stream.write(self.text)
-
 
 # class to hold the content of popup:
 class Upload_FileBrowser:
 
     def __init__(self, heading_text="Choose files"):
 
-        if platform == 'win':
-            user_path = dirname(expanduser('~')) + sep + 'Documents'
-        else:
-            user_path = expanduser('~') + sep + 'Documents'
-
         # initializing filebrowser object:
-        browser = FileBrowser(select_string='Select', cancel_string='Cancel',
-                              favorites=[(user_path, 'Documents')])
+        browser = FileBrowser(select_string='Select', cancel_string='Cancel')
 
         # binding events:
         browser.bind(
             on_success=self._fbrowser_success,
-            on_cancel=self._fbrowser_cancel
+            on_cancel=self._fbrowser_canceled
         )
 
         # popup to hold FileBrowser:
@@ -91,32 +74,25 @@ class Upload_FileBrowser:
             title=heading_text,
             content=browser,
             size_hint=(None, None),
-            size=(600, 600)
+            size=(600, 500),
         )
 
     def _fbrowser_success(self, instance):
         result_success = instance.selection
         return result_success
 
-    def _fbrowser_cancel(self, instance):
-        print("Nothing choosed")
+    def _fbrowser_canceled(self, instance):
+        print("Nothing chose")
 
     def start(self):
         self.popup.open()
-
-# # button widget to open popup window with datetime chooser:
-# class TimeButton(Widget):
-#
-#     datetime_chooser = ObjectProperty(None)
-#
-#         # popup window with datetime widget
-#         popup = Popup(title="test")
 
 
 # to change name of the app you need to refactor
 # name of the this main class:
 class PingPong(App):
     def build(self):
+
         return MainPage()
 
 
