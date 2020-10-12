@@ -9,8 +9,6 @@ from kivy.uix.tabbedpanel import TabbedPanel
 from kivy.properties import ObjectProperty, StringProperty
 from kivy.config import Config
 
-# Config.set('graphics', 'resizable', False)
-
 
 # class to storage object in Popup
 class FileChoosePopup(Popup):
@@ -19,9 +17,19 @@ class FileChoosePopup(Popup):
 
 class Tab(TabbedPanel):
 
+    Config.set('graphics', 'resizable', False)
+
     # when user don't choose any file and trying to load path:
     file_path = StringProperty("No file chosen")
     the_popup = ObjectProperty(None)
+    get_email = ObjectProperty(None)
+    get_password = ObjectProperty(None)
+    get_keyword = ObjectProperty(None)
+
+    def get_data(self):
+        print("email: ", self.get_email.text,
+              "\npassword: ", self.get_password.text,
+              "\nkeyword: ", self.get_keyword.text)
 
     def open_popup(self):
         # loads data for popup:

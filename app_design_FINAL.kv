@@ -1,5 +1,6 @@
 # data that will be loaded in popup(data container)
 <FileChoosePopup>:
+
     title: "Choose needed .csv file"
     size_hint: .8, .8
 
@@ -53,29 +54,70 @@
         text: 'Data providing'
         background_color: (1, .5, 0, 1)
         background_normal: ''
+        get_email: get_email
+        get_password: get_password
+        get_keyword: get_keyword
 
         StackLayout:
+
+
             orientation: 'lr-tb'
+            # orientation: 'tb-lr'
             size_hint_y: None
+            size_hint_x: None
             height: 30
             spacing: 5
+
+            ###
+            # Spacing elements, change it the future as params for free space
+            ###
             Label:
                 text: ''
                 size_hint_x: 1
             Label:
                 text: ''
                 size_hint_x: 0.2
+
+            TextInput:
+                id: get_email
+                hint_text: "Email"
+                font_size: 18
+                size_hint_x: 2.5
+                size_hint_y: 1.2
+            TextInput:
+                id: get_password
+                hint_text: "Password"
+                font_size: 18
+                size_hint_x: 2.5
+                size_hint_y: 1.2
+            TextInput:
+                id: get_keyword
+                hint_text: "Keyword"
+                font_size: 18
+                size_hint_x: 2.5
+                size_hint_y: 1.2
             Button:
                 text: 'Choose File'
-                size_hint_x: 0.2
+                size_hint_x: 2.5
+                size_hint_y: 1.2
+
                 on_press: root.open_popup()
+            Button:
+                text: 'Search'
+                size_hint_x: 2.5
+                size_hint_y: 1.2
+
+                on_press: root.get_data()
             TextInput:
                 id: get_file
                 readonly: True
-                size_hint_x: 0.4
+                size_hint_x: 2.5
+                size_hint_y: 1.2
             Label:
                 text: ''
                 size_hint_x: 0.2
+
+
 
 
 
