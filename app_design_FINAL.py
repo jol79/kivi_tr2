@@ -22,14 +22,20 @@ class Tab(TabbedPanel):
     # when user don't choose any file and trying to load path:
     file_path = StringProperty("No file chosen")
     the_popup = ObjectProperty(None)
-    get_email = ObjectProperty(None)
-    get_password = ObjectProperty(None)
-    get_keyword = ObjectProperty(None)
+    email = ObjectProperty(None)
+    password = ObjectProperty(None)
+    keyword = ObjectProperty(None)
 
     def get_data(self):
-        print("email: ", self.get_email.text,
-              "\npassword: ", self.get_password.text,
-              "\nkeyword: ", self.get_keyword.text)
+        get_email = self.email.text
+        get_password = self.password.text
+        get_keyword = self.keyword.text
+        file_path = self.get_file.text
+
+        print("email: ", get_email,
+              "\npassword: ", get_password,
+              "\nkeyword: ", get_keyword,
+              "\nfilepath: ", file_path)
 
     def open_popup(self):
         # loads data for popup:
